@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import {mainHost} from '@/assets/apiList/index.js'
+import URL from '@/serviceAPI.config.js'
 import axios from 'axios'
 import 'swiper/dist/css/swiper.css'
 import {swiper, swiperSlide} from 'vue-awesome-swiper'
@@ -104,7 +104,7 @@ import goodsInfo from '../component/goodsInfoComponent'
             getShoppingMallData() { //获取商品首页数据
                 const that = this;
                 axios({
-                    url: mainHost + 'shoppingMall/index',
+                    url: URL.getShoppingMallInfo,
                     method: 'get'
                 }).then(response => {
                     console.log(response);
@@ -124,6 +124,7 @@ import goodsInfo from '../component/goodsInfoComponent'
             }
         },
         created() {
+            console.log(URL);
             this.getShoppingMallData();
         }
     }
