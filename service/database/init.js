@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 
 exports.connect = () => {
     //链接数据库
-    mongoose.connect(db);
+    mongoose.connect(db, {useNewUrlParser: false});
 
     let maxConnectTimes = 0;
 
@@ -18,7 +18,7 @@ exports.connect = () => {
             if(maxConnectTimes < 3) {
                 maxConnectTimes ++ ;
                 //进行重连
-                mongoose.connect(db);
+                mongoose.connect(db, {useNewUrlParser: false});
             }else{
                 reject();
                 throw new Error('数据库出现问题，程序无法搞定，请人为修理.......');
@@ -32,7 +32,7 @@ exports.connect = () => {
             if(maxConnectTimes < 3) {
                 maxConnectTimes ++ ;
                 //进行重连
-                mongoose.connect(db);
+                mongoose.connect(db, {useNewUrlParser: false});
             }else {
                 reject();
                 throw new Error('数据库出现问题，程序无法搞定，请人为修理.......');

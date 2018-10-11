@@ -5,10 +5,12 @@ const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const mongoose = require('mongoose');
 let user = require('./appApi/User.js');
+let goods = require('./appApi/Goods.js');
 const {connect, initSchemas} = require('./database/init.js');
 
 let router = new Router();
 router.use('/user', user.routes());
+router.use('/goods', goods.routes());
 
 //立即执行函数
 (async () => {
