@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const glob = require('glob');
+const {resolve} = require('path'); //resolve: 将一系列路径或路径段解析为绝对路径。
 const db = "mongodb://localhost/simle-db";
 
 mongoose.Promise = global.Promise;
@@ -46,4 +48,8 @@ exports.connect = () => {
     })
 
     
+}
+
+exports.initSchemas = () => { //使用了glob.sync同步引入所有的schema文件，然后用forEach的方法require（引入）进来
+    glob.sync(resolve(__dirname, './schema/','**/*.js')).forEach(require);
 }
